@@ -1,0 +1,61 @@
+---
+title: "PIPAH designs"
+author: "Martin Law"
+date: "04/03/2021"
+output:
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+#devtools::install_github("martinlaw/SCsinglearm")
+library(SCsinglearm)
+```
+
+## Simon design
+
+Below is a diagram of the current planned Simon design, including the most important design parameters: maximum number of analyses, maximum sample size (_N_), expected sample size if response rate _p_=_p_~0~=0.1 (ESS(_p_~0~)), that is, if the treatment does not work and expected sample size if response rate _p_=_p_~1~=0.27 (ESS(_p_~1~)), that is, if the treatment works:
+
+```{r simon, fig.align = 'center', out.width = "80%", fig.cap = "Current Simon design"}
+knitr::include_graphics("simon.png")
+```
+
+In these diagrams, the x-axis shows the number of participant results so far, while the y-axis shows the possible number of responses. Darker columns indicate points in the trial where an interim analysis is carried out. If the number of participants and responses corresponds to a blue square, the trial stops due to lack of observed effect, known as a no-go decision. If the number of participants and responses corresponds to a green square, the trial stops due to a positive observed effect, known as a go decision. 
+
+## Alternative designs using stochastic curtailment
+
+There are alternatives to using the Simon design. My research explored the use of stochastic curtailment in trial designs. The defining characteristic of such trials is that they are allowed to end early, even if it is not certain whether or not the trial will be a success if it were to continue until all results are available. In some sense, the Simon design uses stochastic curtailment, though it is not usually described as such.
+
+Designs using stochastic curtailment generally improve on Simon designs in terms of ESS(_p_~0~) and ESS(_p_~1~) at the expense of a greater maximum sample size and/or increased number of analyses. In fact, such designs often use frequent or even continuous monitoring, where a trial can be stopped at any time, after any number of participants. We appreciate that a high degree of monitoring could add an unacceptable increase in logistical burden. We also acknowledge that, given the rarity of the condition being studied, a large increase in maximum sample size would be difficult to justify. 
+
+With the above restrictions in mind, we have obtained some design realisations -- that is, particular examples of a design -- that use stochastic curtailment and that may be preferred to the current Simon design. The number of analyses is never greater than 3, that is, one more than the Simon design, and the maximum sample size is less than or equal to that of the Simon design. Below, we show three possible examples.
+
+### Design 1 
+
+```{r sc1, fig.align = 'center', out.width = "80%", fig.cap = "Possible stochastic curtailment design (1)"}
+knitr::include_graphics("sc1.png")
+```
+
+Compared to the Simon design, this design has the same number of analyses (2), a smaller maximum sample size (32 vs 34) and a smaller expected sample size if the treatment works (28 vs 32). The expected sample size if the treatment does not work is greater (29 vs 21). In this design, the interim analysis would take place after 16 participants, ending early if there are 0 responses or 6 or more responses.
+
+
+### Design 2
+
+```{r sc3, fig.align = 'center', out.width = "80%", fig.cap = "Possible stochastic curtailment design (2)"}
+knitr::include_graphics("sc3.png")
+```
+
+Compared to the Simon design, this design has a smaller maximum sample size (33 vs 34), a smaller expected sample size if the treatment does not work (19.8 vs 21) and a much smaller expected sample size if the treatment works (20.9 vs 32). However, there is one additional analysis. In this design, the interim analyses would take place after 11 and 22 participants, ending early if there are 0 responses or 4 or more responses at the first analysis or if there are fewer than 4 responses or more than 5 responses at the second analysis.
+
+
+### Design 3
+
+```{r sc_certain, fig.align = 'center', out.width = "80%", fig.cap = "Possible stochastic curtailment design (3)"}
+knitr::include_graphics("sc_certain.png")
+```
+
+Compared to the Simon design, this design has a smaller maximum sample size (33 vs 34) and a smaller expected sample size if the treatment works (27.7 vs 32). The expected sample size if the treatment does not work is slightly greater (22.4 vs 21). Again, there is one additional analysis and again the interim analyses would take place after 11 and 22 participants. Here, the trial would end early for lack of effect if there are 0 responses at the first analysis or if there are less than 3 responses at the second analysis. In contrast to the above designs, this trial would end for a positive effect only if trial success by the end of the trial was certain, that is, the number of responses is greater than 6.
+
+
+
