@@ -1,5 +1,4 @@
-devtools::install_github("martinlaw/SCsinglearm")
-library(SCsinglearm)
+library(curtailment)
 
 # Current Simon design:
 simon.des <- findSimonDesigns(nmin=34,
