@@ -12,12 +12,13 @@ simon.used <- drawDiagram(simon.des, print.row = 1)
 png("figs/simonX.png", width = 6, height = 4, units = "in", res=300)
 simon.used
 dev.off()
+ggplot2::ggsave(filename="fig6.tiff", device="tiff", path="figs/", width = 6, height = 4, units = "in", dpi=300)
 # N=34, ESS0=21, ESS1=32, stages=2
 
 
 
 # Stopping for efficacy allowed only when trial success is certain (minthetaE=1):
-SCdesigns.certain <- findDesigns(nmin=17,
+SCdesigns.certain <- singlearmDesign(nmin=17,
                           nmax=36,
                           stages=2:3,
                           p0=0.1,
@@ -29,10 +30,11 @@ SCdesigns.certain <- findDesigns(nmin=17,
 # One design produced that is worth considering:
 SCdesigns.certain$all.des[3,]
 # N=33, ESS0=22, ESS1=28, stages=3
-sc.certain <- drawDiagram(SCdesigns.certain, print.row = 3, xmax = 34, ymax = 34)
+sc.certain <- drawDiagram(SCdesigns.certain, print.row = 3, xmax = 33, ymax = 34)
 png("sc_certain.png", width = 6, height = 4, units = "in", res=300)
 sc.certain
 dev.off()
+ggplot2::ggsave(filename="fig7.tiff", device="tiff", path="figs/", width = 6, height = 4, units = "in", dpi=300)
 
 
 # Without constraint of only stopping once trial success guaranteed:
